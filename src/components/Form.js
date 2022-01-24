@@ -8,7 +8,7 @@ function Form() {
   const [content, setContent] = useState("");
 
   const postSubmit = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     console.log("form submitted");
 
     axios.post("/posts", {
