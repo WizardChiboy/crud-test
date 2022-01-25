@@ -7,7 +7,11 @@ function AllPosts() {
 
   useEffect(() => {
     axios.get("/posts/all").then((response) => {
-      setPosts(response.data);
+      setPosts(
+        response.data.sort((p1, p2) => {
+          return new Date(p2.createdAt) - new Date(p1.createdAt);
+        })
+      );
     });
   }, []);
 

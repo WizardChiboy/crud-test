@@ -1,15 +1,18 @@
 import "./App.css";
 import Form from "./components/Form";
 import AllPosts from "./components/AllPosts";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
-    <>
-      <div>
-        <AllPosts />
+    <Router>
+      <Switch>
+        <Route path="/allposts">
+          <AllPosts />
+        </Route>
         <Form />
-      </div>
-    </>
+      </Switch>
+    </Router>
   );
 }
 

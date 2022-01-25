@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Form.css";
 import axios from "../axios";
+import { Link, Redirect } from "react-router-dom";
 
 function Form() {
   const [title, setTitle] = useState("");
@@ -8,14 +9,20 @@ function Form() {
   const [content, setContent] = useState("");
 
   const postSubmit = async (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     console.log("form submitted");
 
-    axios.post("/posts", {
-      title: title,
-      excerpt: excerpt,
-      content: content,
-    });
+    axios
+      .post("/posts", {
+        title: title,
+        excerpt: excerpt,
+        content: content,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          window.location.assign("/allposts");
+        }
+      });
 
     setTitle("");
     setExcerpt("");
@@ -55,6 +62,14 @@ function Form() {
             <button type="submit"> Post </button>
           </form>
         </div>
+      </div>
+
+      <div className="new">
+        <ul>
+          <li>
+            <Link to="/allposts"> all posts </Link>
+          </li>
+        </ul>
       </div>
     </>
   );
